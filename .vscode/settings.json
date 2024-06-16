@@ -1,0 +1,23 @@
+{
+  "[javascript]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "cSpell.words": [
+    "speakerdeck"
+  ],
+  "deno.enable": true,
+  "deno.lint": true,
+  "deno.suggest.imports.hosts": {
+    "https://deno.land": true
+  },
+  "deno.unstable": true
+}
