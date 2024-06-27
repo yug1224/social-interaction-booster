@@ -60,6 +60,17 @@ async function contentScriptFunc() {
     }
   };
 
+  // connpassのいいねをクリックする
+  const connpassFn = async () => {
+    const a = document.querySelector('span[title="ブックマークする"]:not([style="display: none;"])');
+    const b = document.querySelector(
+      'span[title="メンバーになると、このグループの新規イベントのお知らせが届いたりします"]:not([style="display: none;"])',
+    );
+    for await (const v of [a, b]) {
+      await click(v);
+    }
+  };
+
   // サービスを判別する
   if (location.origin === 'https://qiita.com') {
     await qiitaFn();
@@ -71,6 +82,8 @@ async function contentScriptFunc() {
     await noteFn();
   } else if (location.origin === 'https://speakerdeck.com') {
     await speakerdeckFn();
+  } else if (/https:\/\/([a-z0-9-]+\.)?connpass\.com/.test(location.origin)) {
+    await connpassFn();
   } else {
     // その他のサイトの場合
   }
