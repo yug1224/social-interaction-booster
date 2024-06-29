@@ -71,6 +71,14 @@ async function contentScriptFunc() {
     }
   };
 
+  // GitHubのスターをクリックする
+  const githubFn = async () => {
+    const a = document.querySelector('.starring-container:not(.on) button[aria-label^="Star this repository"]');
+    for await (const v of [a]) {
+      await click(v);
+    }
+  };
+
   // サービスを判別する
   if (location.origin === 'https://qiita.com') {
     await qiitaFn();
@@ -84,6 +92,8 @@ async function contentScriptFunc() {
     await speakerdeckFn();
   } else if (/https:\/\/([a-z0-9-]+\.)?connpass\.com/.test(location.origin)) {
     await connpassFn();
+  } else if (location.origin === 'https://github.com') {
+    await githubFn();
   } else {
     // その他のサイトの場合
   }
