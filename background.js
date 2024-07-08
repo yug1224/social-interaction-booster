@@ -20,11 +20,11 @@ async function contentScriptFunc() {
   const qiitaFn = async () => {
     const a = Array.from(
       document.querySelectorAll(
-        'div.p-items_main > div:nth-child(1) button[aria-label="いいねする"],div.p-items_main > div:nth-child(1) button[aria-label="ストックする"]',
+        'div.p-items_main > article button[aria-label="いいねする"],div.p-items_main > article button[aria-label="ストックする"]',
       ),
     );
     const b = Array.from(
-      document.querySelectorAll('div.p-items_main > div:nth-child(2) button'),
+      document.querySelectorAll('div.p-items_main > div > section button'),
     ).filter((v) => v.textContent === 'フォロー');
     for await (const v of [...a, ...b]) {
       await click(v);
