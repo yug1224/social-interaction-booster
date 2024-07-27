@@ -85,7 +85,8 @@ async function contentScriptFunc() {
   } else if (location.origin === 'https://zenn.dev') {
     await zennFn();
   } else if (
-    location.origin === 'https://note.com' || !!document.querySelector('a[aria-label="home"][href="https://note.com/"]')
+    location.origin === 'https://note.com' ||
+    !!document.querySelector('a.a-link.o-footer__powerdbyLogo.fn[href="https://note.com/"]')
   ) {
     await noteFn();
   } else if (location.origin === 'https://speakerdeck.com') {
