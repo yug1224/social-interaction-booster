@@ -33,11 +33,19 @@ async function contentScriptFunc() {
 
   // Zennのいいね、フォローをクリックする
   const zennFn = async () => {
-    const a = document.querySelector('#share button[aria-label="いいね"][class^="LikeButton_button__"]');
+    const a = document.querySelector(
+      'div[class^="LikeButton_container"] > button[aria-label="いいね"][class^="LikeButton_button"]',
+    );
+
     const b = Array.from(
-      document.querySelectorAll('div[class^="Container_default__"] button[class^="FollowButton_button__"]'),
+      document.querySelectorAll('div[class^="SidebarUserBio"] button[class^="FollowButton_button"]'),
     ).filter((v) => v.textContent === 'フォロー');
-    for await (const v of [a, ...b]) {
+
+    const c = Array.from(
+      document.querySelectorAll('div[class^="View_publicationInfo"] button[class^="FollowButton_button"]'),
+    ).filter((v) => v.textContent === 'フォロー');
+
+    for await (const v of [a, ...b, ...c]) {
       await click(v);
     }
   };
