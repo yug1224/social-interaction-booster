@@ -34,7 +34,7 @@ async function contentScriptFunc() {
   // Zennのいいね、フォローをクリックする
   const zennFn = async () => {
     const a = document.querySelector(
-      'div[class^="LikeButton_container"] > button[aria-label="いいね"][class^="LikeButton_button"]',
+      'div[class^="LikeButton_container"] > button[aria-label="いいね"][class^="LikeButton_button__"]',
     );
 
     const b = Array.from(
