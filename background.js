@@ -83,6 +83,14 @@ async function contentScriptFunc() {
     }
   };
 
+  // YouTubeのスターをクリックする
+  const youtubeFn = async () => {
+    const a = document.querySelector('button[title="高く評価"]');
+    for await (const v of [a]) {
+      await click(v);
+    }
+  };
+
   // サービスを判別する
   if (location.origin === 'https://qiita.com') {
     await qiitaFn();
@@ -99,6 +107,8 @@ async function contentScriptFunc() {
     await connpassFn();
   } else if (location.origin === 'https://github.com') {
     await githubFn();
+  } else if (location.origin === 'https://www.youtube.com') {
+    await youtubeFn();
   } else {
     // その他のサイトの場合
   }
